@@ -136,6 +136,64 @@ See the [bar-tabs README](./bar-tabs/README.md) for detailed code examples and e
 
 ---
 
+## 🐼🤝🏿🐼 Contributing
+
+We welcome contributions from developers of all skill levels!
+
+### Quick Contribution Guide
+
+```bash
+# 1. Fork & clone
+git clone https://github.com/YOUR_USERNAME/tanukipalace.git
+cd tanukipalace
+
+# 2. Create a branch
+git checkout -b feature/your-feature-name
+
+# 3. Make changes, then commit
+git add .
+git commit -m "feat: describe your change"
+
+# 4. Push and open a PR
+git push origin feature/your-feature-name
+```
+
+### Where to Contribute
+
+| Project | Good For | Difficulty |
+|---------|----------|------------|
+| `index.html` | CSS animations, visual effects | 🟢 Beginner |
+| `bar-tabs/src/data/` | Adding new sake/tanuki | 🟢 Beginner |
+| `bar-tabs/src/components/` | React components, UI | 🟡 Intermediate |
+| `bar-tabs/src/store/` | State logic, calculations | 🟡 Intermediate |
+
+### Detailed Guide
+
+For step-by-step instructions on:
+- Setting up your development environment
+- Making and testing changes
+- Submitting pull requests
+- Code style guidelines
+
+See the **[Bar Tabs Contributing Guide](./bar-tabs/README.md#-contributing)**
+
+### Ideas for First Contributions
+
+- 🍶 Add a new sake type (edit `bar-tabs/src/data/sake.ts`)
+- 🦝 Create a new tanuki character (edit `bar-tabs/src/data/tanukis.ts`)
+- 🎨 Improve CSS animations
+- 📝 Fix typos or improve documentation
+- 🐛 Report bugs by opening an issue
+
+---
+
+## 📜 License
+
+MIT License — free to use, modify, and distribute. See [LICENSE](./LICENSE) for details.
+
+---
+
 <p align="center">
-  <strong>🍶 ポンポコ! 🍶</strong>
+  <strong>🍶 ポンポコ! 🍶</strong><br>
+  <em>Built with sake and good vibes</em>
 </p>

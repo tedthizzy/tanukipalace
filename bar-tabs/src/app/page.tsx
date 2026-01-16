@@ -7,6 +7,7 @@ import { tanukis, getTanukiById, drunkLevelEmoji, drunkLevelLabels, DrunkLevel }
 import { sakeMenu, getSakeById } from '@/data/sake';
 import { formatCurrency, formatTime, cn } from '@/lib/utils';
 import { Plus, X, Trash2, Receipt, Users, Wine, BarChart3 } from 'lucide-react';
+import { TanukiBar } from '@/components/TanukiBar';
 
 export default function BarTabsPage() {
   const [selectedTanuki, setSelectedTanuki] = useState<string>('');
@@ -59,7 +60,7 @@ export default function BarTabsPage() {
   return (
     <div className="min-h-screen p-6">
       {/* Header */}
-      <header className="mb-8">
+      <header className="mb-6">
         <h1 className="text-4xl font-bold text-[var(--palace-gold)] mb-2">
           🦝 狸御殿 Bar Tabs
         </h1>
@@ -67,6 +68,9 @@ export default function BarTabsPage() {
           Tanuki Palace Point of Sale System
         </p>
       </header>
+
+      {/* Animated Tanuki Bar Scene */}
+      <TanukiBar />
 
       <Tabs.Root defaultValue="tabs" className="w-full">
         <Tabs.List className="flex border-b border-[rgba(212,168,83,0.3)] mb-6">

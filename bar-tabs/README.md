@@ -313,11 +313,132 @@ To deploy, push to GitHub and connect to [Vercel](https://vercel.com) (free tier
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch: `git checkout -b my-feature`
-3. Commit changes: `git commit -m 'Add feature'`
-4. Push to branch: `git push origin my-feature`
-5. Open a Pull Request
+We welcome contributions! Here's a complete guide for first-time contributors.
+
+### Step 1: Fork & Clone
+
+```bash
+# 1. Fork the repo on GitHub (click "Fork" button in top right)
+
+# 2. Clone YOUR fork (not the original)
+git clone https://github.com/YOUR_USERNAME/tanukipalace.git
+cd tanukipalace/bar-tabs
+
+# 3. Add the original repo as "upstream" (for syncing later)
+git remote add upstream https://github.com/ORIGINAL_OWNER/tanukipalace.git
+```
+
+### Step 2: Set Up Development Environment
+
+```bash
+# Install dependencies
+npm install
+
+# Start the dev server
+npm run dev
+
+# Open http://localhost:3000 in your browser
+```
+
+### Step 3: Create a Feature Branch
+
+```bash
+# Always create a new branch for your changes (never work on main)
+git checkout -b feature/my-awesome-feature
+
+# Some branch naming examples:
+# feature/add-new-sake-type
+# fix/drunk-level-calculation
+# docs/update-readme
+```
+
+### Step 4: Make Your Changes
+
+**Where to find things:**
+| What you want to change | File location |
+|------------------------|---------------|
+| Add new sake items | `src/data/sake.ts` |
+| Add new tanuki characters | `src/data/tanukis.ts` |
+| Change drunk level logic | `src/store/tabStore.ts` |
+| Update bar visualization | `src/components/TanukiBar.tsx` |
+| Change styling/animations | `src/app/globals.css` |
+| Update main UI | `src/app/page.tsx` |
+
+### Step 5: Test Your Changes
+
+```bash
+# Make sure the app still runs
+npm run dev
+
+# Check for TypeScript errors
+npm run build
+
+# Check for linting issues
+npm run lint
+```
+
+### Step 6: Commit & Push
+
+```bash
+# Stage your changes
+git add .
+
+# Commit with a descriptive message
+git commit -m "feat: add legendary 1000-year sake with +10 drunk points"
+
+# Push to YOUR fork
+git push origin feature/my-awesome-feature
+```
+
+**Commit message format:**
+- `feat:` — New feature
+- `fix:` — Bug fix
+- `docs:` — Documentation changes
+- `style:` — CSS/formatting changes
+- `refactor:` — Code refactoring
+
+### Step 7: Open a Pull Request
+
+1. Go to your fork on GitHub
+2. Click **"Compare & pull request"**
+3. Write a clear description of what you changed and why
+4. Submit the PR!
+
+### Keeping Your Fork Updated
+
+```bash
+# Fetch updates from the original repo
+git fetch upstream
+
+# Switch to your main branch
+git checkout main
+
+# Merge updates
+git merge upstream/main
+
+# Push to your fork
+git push origin main
+```
+
+### Code Style Guidelines
+
+- Use **TypeScript** for all new code
+- Follow existing patterns in the codebase
+- Keep components small and focused
+- Use meaningful variable names (not `x`, `temp`, etc.)
+- Add comments for complex logic
+- Use Tailwind utility classes for styling
+
+### Ideas for Contributions
+
+- 🍶 Add new sake types with unique effects
+- 🦝 Create new tanuki characters with personalities
+- 🎨 Improve animations and visual effects
+- 📱 Better mobile responsiveness
+- 🌙 Add day/night themes
+- 🎵 Add sound effects
+- 📊 More detailed analytics in Summary tab
+- 🧪 Add unit tests
 
 ---
 
