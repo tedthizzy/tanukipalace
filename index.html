@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tanuki Palace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --night-deep: #0a0a1a;
+      --night-mid: #1a1a3a;
+      --palace-gold: #d4a853;
+      --lantern-glow: #ff6b35;
+      --tanuki-brown: #8b5a2b;
+      --tanuki-cream: #f5e6c8;
+      --star-white: #fffef0;
+      --sakura-pink: #ffb7c5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      background: linear-gradient(180deg, 
+        var(--night-deep) 0%, 
+        var(--night-mid) 40%,
+        #2d1b4e 70%,
+        #1a1a3a 100%
+      );
+      color: var(--tanuki-cream);
+    }
+
+    .scene {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Stars */
+    .stars {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60%;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+      background: var(--star-white);
+      border-radius: 50%;
+      animation: twinkle 3s ease-in-out infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    /* Moon */
+    .moon {
+      position: absolute;
+      top: 8%;
+      right: 15%;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle at 30% 30%, 
+        #fffef0 0%, 
+        #f0e68c 50%, 
+        #daa520 100%
+      );
+      border-radius: 50%;
+      box-shadow: 
+        0 0 60px 20px rgba(255, 254, 240, 0.3),
+        0 0 100px 40px rgba(255, 254, 240, 0.1);
+      animation: moonGlow 8s ease-in-out infinite;
+    }
+
+    @keyframes moonGlow {
+      0%, 100% { box-shadow: 0 0 60px 20px rgba(255, 254, 240, 0.3), 0 0 100px 40px rgba(255, 254, 240, 0.1); }
+      50% { box-shadow: 0 0 80px 30px rgba(255, 254, 240, 0.4), 0 0 120px 50px rgba(255, 254, 240, 0.15); }
+    }
+
+    /* Palace silhouette */
+    .palace {
+      position: absolute;
+      bottom: 15%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 400px;
+    }
+
+    .palace-base {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 500px;
+      height: 120px;
+      background: linear-gradient(180deg, #1a1a2e 0%, #0f0f1a 100%);
+      clip-path: polygon(5% 100%, 0% 50%, 10% 50%, 10% 30%, 20% 30%, 20% 0%, 80% 0%, 80% 30%, 90% 30%, 90% 50%, 100% 50%, 95% 100%);
+    }
+
+    .palace-roof {
+      position: absolute;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 400px;
+      height: 80px;
+      background: #1a1a2e;
+      clip-path: polygon(0% 100%, 10% 0%, 90% 0%, 100% 100%);
+    }
+
+    .palace-roof::before {
+      content: '';
+      position: absolute;
+      bottom: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 280px;
+      height: 60px;
+      background: #1a1a2e;
+      clip-path: polygon(0% 100%, 15% 0%, 85% 0%, 100% 100%);
+    }
+
+    .palace-roof::after {
+      content: '';
+      position: absolute;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 160px;
+      height: 50px;
+      background: #1a1a2e;
+      clip-path: polygon(0% 100%, 20% 0%, 80% 0%, 100% 100%);
+    }
+
+    .palace-spire {
+      position: absolute;
+      bottom: 230px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 80px;
+      background: linear-gradient(180deg, var(--palace-gold) 0%, #1a1a2e 30%);
+      clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+    }
+
+    /* Lanterns */
+    .lantern {
+      position: absolute;
+      width: 30px;
+      height: 45px;
+      animation: sway 4s ease-in-out infinite;
+    }
+
+    .lantern-body {
+      width: 100%;
+      height: 35px;
+      background: linear-gradient(180deg, #cc3300 0%, #ff6b35 50%, #cc3300 100%);
+      border-radius: 5px;
+      position: relative;
+      box-shadow: 0 0 20px 5px rgba(255, 107, 53, 0.4);
+    }
+
+    .lantern-body::before {
+      content: '';
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 8px;
+      background: #2a2a2a;
+      border-radius: 2px 2px 0 0;
+    }
+
+    .lantern-body::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 15px;
+      height: 10px;
+      background: #2a2a2a;
+      border-radius: 0 0 3px 3px;
+    }
+
+    .lantern-string {
+      position: absolute;
+      top: -25px;
+      left: 50%;
+      width: 2px;
+      height: 20px;
+      background: #333;
+    }
+
+    @keyframes sway {
+      0%, 100% { transform: rotate(-3deg); }
+      50% { transform: rotate(3deg); }
+    }
+
+    /* Tanuki */
+    .tanuki {
+      position: absolute;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .tanuki:hover {
+      transform: scale(1.1);
+    }
+
+    .tanuki-body {
+      position: relative;
+      width: 80px;
+      height: 70px;
+      background: radial-gradient(ellipse at 50% 40%, var(--tanuki-brown) 0%, #5a3a1a 100%);
+      border-radius: 50% 50% 45% 45%;
+    }
+
+    .tanuki-face {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 50px;
+      background: radial-gradient(ellipse at 50% 60%, var(--tanuki-cream) 0%, #e6d4a8 100%);
+      border-radius: 50%;
+    }
+
+    .tanuki-eye {
+      position: absolute;
+      top: 18px;
+      width: 12px;
+      height: 14px;
+      background: #1a1a1a;
+      border-radius: 50%;
+      animation: blink 4s ease-in-out infinite;
+    }
+
+    .tanuki-eye::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 4px;
+      height: 4px;
+      background: white;
+      border-radius: 50%;
+    }
+
+    .tanuki-eye.left { left: 12px; }
+    .tanuki-eye.right { right: 12px; }
+
+    @keyframes blink {
+      0%, 45%, 55%, 100% { transform: scaleY(1); }
+      50% { transform: scaleY(0.1); }
+    }
+
+    .tanuki-nose {
+      position: absolute;
+      top: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 10px;
+      height: 8px;
+      background: #1a1a1a;
+      border-radius: 50%;
+    }
+
+    .tanuki-mask {
+      position: absolute;
+      top: 12px;
+      width: 18px;
+      height: 22px;
+      background: #3a2a1a;
+      border-radius: 50% 50% 30% 30%;
+    }
+
+    .tanuki-mask.left { left: 5px; transform: rotate(-10deg); }
+    .tanuki-mask.right { right: 5px; transform: rotate(10deg); }
+
+    .tanuki-ear {
+      position: absolute;
+      top: -8px;
+      width: 20px;
+      height: 20px;
+      background: var(--tanuki-brown);
+      border-radius: 50% 50% 0 0;
+    }
+
+    .tanuki-ear.left { left: 8px; transform: rotate(-20deg); }
+    .tanuki-ear.right { right: 8px; transform: rotate(20deg); }
+
+    .tanuki-belly {
+      position: absolute;
+      bottom: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 35px;
+      background: radial-gradient(ellipse, var(--tanuki-cream) 0%, #e6d4a8 100%);
+      border-radius: 50%;
+    }
+
+    .tanuki-tail {
+      position: absolute;
+      bottom: 15px;
+      right: -15px;
+      width: 30px;
+      height: 25px;
+      background: linear-gradient(90deg, var(--tanuki-brown) 0%, #5a3a1a 50%, var(--tanuki-brown) 100%);
+      border-radius: 50%;
+      transform: rotate(-30deg);
+      animation: wagTail 2s ease-in-out infinite;
+    }
+
+    @keyframes wagTail {
+      0%, 100% { transform: rotate(-30deg); }
+      50% { transform: rotate(-15deg); }
+    }
+
+    /* Floating tanuki animation */
+    .tanuki.floating {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    /* Leaf hat for some tanukis */
+    .tanuki-leaf {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%) rotate(15deg);
+      width: 40px;
+      height: 25px;
+      background: linear-gradient(135deg, #228b22 0%, #32cd32 50%, #228b22 100%);
+      border-radius: 0 80% 0 80%;
+      transform-origin: center bottom;
+      animation: leafBounce 3s ease-in-out infinite;
+    }
+
+    @keyframes leafBounce {
+      0%, 100% { transform: translateX(-50%) rotate(15deg); }
+      50% { transform: translateX(-50%) rotate(25deg); }
+    }
+
+    /* Sake bottle for some tanukis */
+    .tanuki-sake {
+      position: absolute;
+      bottom: 0;
+      right: -25px;
+      width: 18px;
+      height: 35px;
+      background: linear-gradient(180deg, #4a4a4a 0%, #2a2a2a 100%);
+      border-radius: 3px 3px 5px 5px;
+    }
+
+    .tanuki-sake::before {
+      content: '';
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px;
+      height: 10px;
+      background: #3a3a3a;
+      border-radius: 2px;
+    }
+
+    /* Ground/grass */
+    .ground {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 15%;
+      background: linear-gradient(180deg, 
+        transparent 0%,
+        #1a2a1a 20%,
+        #0f1a0f 100%
+      );
+    }
+
+    .grass {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 60px;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent 0px,
+        transparent 10px,
+        #1a3a1a 10px,
+        #1a3a1a 12px
+      );
+      opacity: 0.5;
+    }
+
+    /* Title */
+    .title {
+      position: absolute;
+      top: 5%;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      z-index: 10;
+    }
+
+    .title h1 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 4rem;
+      font-weight: 700;
+      color: var(--palace-gold);
+      text-shadow: 
+        0 0 20px rgba(212, 168, 83, 0.5),
+        0 4px 8px rgba(0, 0, 0, 0.5);
+      letter-spacing: 0.2em;
+      animation: titleGlow 4s ease-in-out infinite;
+    }
+
+    .title p {
+      font-size: 1.2rem;
+      color: var(--tanuki-cream);
+      opacity: 0.8;
+      margin-top: 0.5rem;
+      letter-spacing: 0.3em;
+    }
+
+    @keyframes titleGlow {
+      0%, 100% { text-shadow: 0 0 20px rgba(212, 168, 83, 0.5), 0 4px 8px rgba(0, 0, 0, 0.5); }
+      50% { text-shadow: 0 0 40px rgba(212, 168, 83, 0.8), 0 4px 8px rgba(0, 0, 0, 0.5); }
+    }
+
+    /* Sakura petals */
+    .petal {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: var(--sakura-pink);
+      border-radius: 150% 0 150% 0;
+      opacity: 0.7;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-10vh) rotate(0deg) translateX(0);
+        opacity: 0;
+      }
+      10% { opacity: 0.7; }
+      90% { opacity: 0.7; }
+      100% {
+        transform: translateY(110vh) rotate(720deg) translateX(100px);
+        opacity: 0;
+      }
+    }
+
+    /* Counter */
+    .tanuki-counter {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(26, 26, 58, 0.9);
+      padding: 15px 25px;
+      border-radius: 10px;
+      border: 2px solid var(--palace-gold);
+      font-family: 'Shippori Mincho', serif;
+      z-index: 100;
+    }
+
+    .tanuki-counter span {
+      color: var(--palace-gold);
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    /* Click effect */
+    .tanuki.clicked .tanuki-body {
+      animation: jump 0.5s ease;
+    }
+
+    @keyframes jump {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* Speech bubble */
+    .speech-bubble {
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      color: #333;
+      padding: 8px 12px;
+      border-radius: 15px;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .speech-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 8px solid transparent;
+      border-top-color: white;
+      border-bottom: none;
+    }
+
+    .tanuki:hover .speech-bubble {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="scene">
+    <!-- Stars generated by JS -->
+    <div class="stars" id="stars"></div>
+    
+    <!-- Moon -->
+    <div class="moon"></div>
+    
+    <!-- Title -->
+    <div class="title">
+      <h1>狸御殿</h1>
+      <p>TANUKI PALACE</p>
+    </div>
+    
+    <!-- Palace -->
+    <div class="palace">
+      <div class="palace-spire"></div>
+      <div class="palace-roof"></div>
+      <div class="palace-base"></div>
+    </div>
+    
+    <!-- Lanterns -->
+    <div class="lantern" style="top: 25%; left: 10%; animation-delay: 0s;">
+      <div class="lantern-string"></div>
+      <div class="lantern-body"></div>
+    </div>
+    <div class="lantern" style="top: 30%; left: 85%; animation-delay: 1s;">
+      <div class="lantern-string"></div>
+      <div class="lantern-body"></div>
+    </div>
+    <div class="lantern" style="top: 20%; left: 25%; animation-delay: 2s;">
+      <div class="lantern-string"></div>
+      <div class="lantern-body"></div>
+    </div>
+    <div class="lantern" style="top: 35%; right: 20%; animation-delay: 0.5s;">
+      <div class="lantern-string"></div>
+      <div class="lantern-body"></div>
+    </div>
+    
+    <!-- Tanukis -->
+    <div class="tanuki floating" style="bottom: 18%; left: 8%;">
+      <div class="speech-bubble">ポンポコ!</div>
+      <div class="tanuki-leaf"></div>
+      <div class="tanuki-body">
+        <div class="tanuki-ear left"></div>
+        <div class="tanuki-ear right"></div>
+        <div class="tanuki-face">
+          <div class="tanuki-mask left"></div>
+          <div class="tanuki-mask right"></div>
+          <div class="tanuki-eye left"></div>
+          <div class="tanuki-eye right"></div>
+          <div class="tanuki-nose"></div>
+        </div>
+        <div class="tanuki-belly"></div>
+        <div class="tanuki-tail"></div>
+      </div>
+    </div>
+    
+    <div class="tanuki floating" style="bottom: 20%; right: 10%; animation-delay: 1s;">
+      <div class="speech-bubble">Welcome!</div>
+      <div class="tanuki-body">
+        <div class="tanuki-ear left"></div>
+        <div class="tanuki-ear right"></div>
+        <div class="tanuki-face">
+          <div class="tanuki-mask left"></div>
+          <div class="tanuki-mask right"></div>
+          <div class="tanuki-eye left" style="animation-delay: 0.5s;"></div>
+          <div class="tanuki-eye right" style="animation-delay: 0.5s;"></div>
+          <div class="tanuki-nose"></div>
+        </div>
+        <div class="tanuki-belly"></div>
+        <div class="tanuki-tail"></div>
+        <div class="tanuki-sake"></div>
+      </div>
+    </div>
+    
+    <div class="tanuki floating" style="bottom: 25%; left: 25%; animation-delay: 2s;">
+      <div class="speech-bubble">狸だよ~</div>
+      <div class="tanuki-leaf"></div>
+      <div class="tanuki-body">
+        <div class="tanuki-ear left"></div>
+        <div class="tanuki-ear right"></div>
+        <div class="tanuki-face">
+          <div class="tanuki-mask left"></div>
+          <div class="tanuki-mask right"></div>
+          <div class="tanuki-eye left" style="animation-delay: 1s;"></div>
+          <div class="tanuki-eye right" style="animation-delay: 1s;"></div>
+          <div class="tanuki-nose"></div>
+        </div>
+        <div class="tanuki-belly"></div>
+        <div class="tanuki-tail"></div>
+      </div>
+    </div>
+    
+    <div class="tanuki floating" style="bottom: 22%; right: 28%; animation-delay: 3s;">
+      <div class="speech-bubble">Sake time!</div>
+      <div class="tanuki-body">
+        <div class="tanuki-ear left"></div>
+        <div class="tanuki-ear right"></div>
+        <div class="tanuki-face">
+          <div class="tanuki-mask left"></div>
+          <div class="tanuki-mask right"></div>
+          <div class="tanuki-eye left" style="animation-delay: 2s;"></div>
+          <div class="tanuki-eye right" style="animation-delay: 2s;"></div>
+          <div class="tanuki-nose"></div>
+        </div>
+        <div class="tanuki-belly"></div>
+        <div class="tanuki-tail"></div>
+        <div class="tanuki-sake"></div>
+      </div>
+    </div>
+    
+    <div class="tanuki floating" style="bottom: 16%; left: 45%; animation-delay: 1.5s;">
+      <div class="speech-bubble">*drumming belly*</div>
+      <div class="tanuki-body">
+        <div class="tanuki-ear left"></div>
+        <div class="tanuki-ear right"></div>
+        <div class="tanuki-face">
+          <div class="tanuki-mask left"></div>
+          <div class="tanuki-mask right"></div>
+          <div class="tanuki-eye left" style="animation-delay: 0.3s;"></div>
+          <div class="tanuki-eye right" style="animation-delay: 0.3s;"></div>
+          <div class="tanuki-nose"></div>
+        </div>
+        <div class="tanuki-belly"></div>
+        <div class="tanuki-tail"></div>
+      </div>
+    </div>
+    
+    <div class="tanuki floating" style="bottom: 30%; left: 70%; animation-delay: 2.5s;">
+      <div class="speech-bubble">Shape-shift!</div>
+      <div class="tanuki-leaf"></div>
+      <div class="tanuki-body">
+        <div class="tanuki-ear left"></div>
+        <div class="tanuki-ear right"></div>
+        <div class="tanuki-face">
+          <div class="tanuki-mask left"></div>
+          <div class="tanuki-mask right"></div>
+          <div class="tanuki-eye left" style="animation-delay: 1.5s;"></div>
+          <div class="tanuki-eye right" style="animation-delay: 1.5s;"></div>
+          <div class="tanuki-nose"></div>
+        </div>
+        <div class="tanuki-belly"></div>
+        <div class="tanuki-tail"></div>
+      </div>
+    </div>
+    
+    <!-- Ground -->
+    <div class="ground">
+      <div class="grass"></div>
+    </div>
+    
+    <!-- Sakura petals generated by JS -->
+    <div id="petals"></div>
+    
+    <!-- Counter -->
+    <div class="tanuki-counter">
+      Tanukis spotted: <span id="counter">0</span>
+    </div>
+  </div>
+
+  <script>
+    // Generate stars
+    const starsContainer = document.getElementById('stars');
+    for (let i = 0; i < 100; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.width = (Math.random() * 3 + 1) + 'px';
+      star.style.height = star.style.width;
+      star.style.animationDelay = Math.random() * 3 + 's';
+      star.style.animationDuration = (Math.random() * 2 + 2) + 's';
+      starsContainer.appendChild(star);
+    }
+
+    // Generate sakura petals
+    const petalsContainer = document.getElementById('petals');
+    function createPetal() {
+      const petal = document.createElement('div');
+      petal.className = 'petal';
+      petal.style.left = Math.random() * 100 + '%';
+      petal.style.animationDuration = (Math.random() * 5 + 8) + 's';
+      petal.style.animationDelay = Math.random() * 5 + 's';
+      petal.style.width = (Math.random() * 8 + 6) + 'px';
+      petal.style.height = petal.style.width;
+      petalsContainer.appendChild(petal);
+      
+      // Remove petal after animation
+      setTimeout(() => petal.remove(), 15000);
+    }
+
+    // Create initial petals
+    for (let i = 0; i < 20; i++) {
+      setTimeout(createPetal, i * 500);
+    }
+
+    // Continuously create new petals
+    setInterval(createPetal, 800);
+
+    // Tanuki click counter
+    let count = 0;
+    const counter = document.getElementById('counter');
+    const tanukis = document.querySelectorAll('.tanuki');
+    
+    tanukis.forEach(tanuki => {
+      tanuki.addEventListener('click', () => {
+        count++;
+        counter.textContent = count;
+        tanuki.classList.add('clicked');
+        setTimeout(() => tanuki.classList.remove('clicked'), 500);
+      });
+    });
+
+    // Fun messages in console
+    console.log('%c🦝 Welcome to Tanuki Palace! 🏯', 'font-size: 24px; color: #d4a853;');
+    console.log('%cClick on the tanukis to count them!', 'font-size: 14px; color: #f5e6c8;');
+  </script>
+</body>
+</html>
