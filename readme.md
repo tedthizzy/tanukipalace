@@ -66,15 +66,73 @@ npm run dev
 
 ---
 
-## 🦝 What's a Tanuki?
+## 🛠️ Build Your Own App Like This
 
-Tanuki (狸) are Japanese raccoon dogs that appear frequently in folklore. They're known for:
-- **Shapeshifting** — Disguising as humans, objects (especially tea kettles!)
-- **Big bellies** — Which they drum on for magical effects
-- **Love of sake** — They're often depicted drinking and merry
-- **Mischief** — Playful tricksters, but generally benevolent
+Want to create a similar project? Here's the modern stack we used and how to get started:
 
-Famous tanuki include Pompoko from Studio Ghibli's "Pom Poko" and the statue outside many Japanese restaurants!
+### Recommended Stack
+| Tool | Purpose | Why |
+|------|---------|-----|
+| **[Bun](https://bun.sh)** | Package manager + runtime | 3x faster than npm, built-in TypeScript |
+| **[Next.js](https://nextjs.org)** | React framework | Routing, SSR, best practices baked in |
+| **[TypeScript](https://typescriptlang.org)** | Typed JavaScript | Catch bugs early, better autocomplete |
+| **[Tailwind CSS](https://tailwindcss.com)** | Styling | Rapid UI development |
+| **[Zustand](https://github.com/pmndrs/zustand)** | State management | Simplest option for React |
+| **[Radix UI](https://radix-ui.com)** | Components | Accessible tabs, selects, dialogs |
+| **[Git](https://git-scm.com)** | Version control | Track changes, collaborate |
+| **[Vercel](https://vercel.com)** | Deployment | Free hosting, auto-deploys from Git |
+
+### Quick Start (5 minutes)
+
+```bash
+# 1. Install Bun (if you don't have it)
+curl -fsSL https://bun.sh/install | bash
+
+# 2. Create a new Next.js app
+bun create next-app my-app --typescript --tailwind --app --eslint
+
+# 3. Enter the project and install extras
+cd my-app
+bun add zustand @radix-ui/react-tabs @radix-ui/react-select lucide-react
+
+# 4. Start developing
+bun run dev
+```
+
+### Deploy to Vercel (2 minutes)
+
+```bash
+# 1. Initialize Git and push to GitHub
+git init
+git add .
+git commit -m "Initial commit"
+gh repo create my-app --public --push  # or create manually on github.com
+
+# 2. Deploy
+# Go to vercel.com → New Project → Import your GitHub repo → Deploy
+# That's it! Vercel auto-deploys on every push.
+```
+
+### Project Structure Pattern
+
+```
+my-app/
+├── src/
+│   ├── app/           # Pages (file-based routing)
+│   ├── components/    # Reusable UI components
+│   ├── data/          # Static data (JSON/TS files)
+│   ├── store/         # Zustand stores
+│   └── lib/           # Utility functions
+```
+
+### Key Concepts
+
+1. **Data as Code** — Store your "Excel sheets" as TypeScript arrays/objects in `/data`
+2. **Lookup Functions** — Replace VLOOKUP with `Array.find()` and `Array.filter()`
+3. **Reactive State** — Use Zustand to share data across components; React auto-updates UI
+4. **Tabs as Routes** — Use Radix Tabs for single-page or Next.js routes for multi-page
+
+See the [bar-tabs README](./bar-tabs/README.md) for detailed code examples and explanations!
 
 ---
 
