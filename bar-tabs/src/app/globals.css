@@ -1,0 +1,247 @@
+@import "tailwindcss";
+
+:root {
+  --night-deep: #0a0a1a;
+  --night-mid: #1a1a3a;
+  --palace-gold: #d4a853;
+  --lantern-glow: #ff6b35;
+  --tanuki-brown: #8b5a2b;
+  --tanuki-cream: #f5e6c8;
+  --sake-white: #fffef0;
+  --success: #22c55e;
+  --warning: #eab308;
+  --danger: #ef4444;
+}
+
+body {
+  background: linear-gradient(180deg, var(--night-deep) 0%, var(--night-mid) 100%);
+  color: var(--tanuki-cream);
+  min-height: 100vh;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--night-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--palace-gold);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c49843;
+}
+
+/* Tab styles */
+.tab-trigger {
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  border: none;
+  color: var(--tanuki-cream);
+  opacity: 0.6;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-bottom: 2px solid transparent;
+  font-weight: 500;
+}
+
+.tab-trigger:hover {
+  opacity: 0.9;
+}
+
+.tab-trigger[data-state="active"] {
+  opacity: 1;
+  border-bottom-color: var(--palace-gold);
+  color: var(--palace-gold);
+}
+
+/* Card styles */
+.card {
+  background: rgba(26, 26, 58, 0.8);
+  border: 1px solid rgba(212, 168, 83, 0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+  backdrop-filter: blur(10px);
+}
+
+.card-header {
+  border-bottom: 1px solid rgba(212, 168, 83, 0.2);
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Button styles */
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--palace-gold);
+  color: var(--night-deep);
+}
+
+.btn-primary:hover {
+  background: #c49843;
+}
+
+.btn-secondary {
+  background: rgba(212, 168, 83, 0.2);
+  color: var(--palace-gold);
+  border: 1px solid var(--palace-gold);
+}
+
+.btn-secondary:hover {
+  background: rgba(212, 168, 83, 0.3);
+}
+
+.btn-danger {
+  background: rgba(239, 68, 68, 0.2);
+  color: var(--danger);
+  border: 1px solid var(--danger);
+}
+
+.btn-danger:hover {
+  background: rgba(239, 68, 68, 0.3);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--tanuki-cream);
+}
+
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Input styles */
+.input {
+  background: rgba(10, 10, 26, 0.6);
+  border: 1px solid rgba(212, 168, 83, 0.3);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  color: var(--tanuki-cream);
+  width: 100%;
+  transition: border-color 0.2s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--palace-gold);
+}
+
+.input::placeholder {
+  color: rgba(245, 230, 200, 0.4);
+}
+
+/* Select styles */
+.select {
+  background: rgba(10, 10, 26, 0.6);
+  border: 1px solid rgba(212, 168, 83, 0.3);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  color: var(--tanuki-cream);
+  width: 100%;
+  cursor: pointer;
+}
+
+.select:focus {
+  outline: none;
+  border-color: var(--palace-gold);
+}
+
+/* Badge styles */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badge-sober {
+  background: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+}
+
+.badge-tipsy {
+  background: rgba(234, 179, 8, 0.2);
+  color: #eab308;
+}
+
+.badge-merry {
+  background: rgba(249, 115, 22, 0.2);
+  color: #f97316;
+}
+
+.badge-drunk {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+.badge-plastered {
+  background: rgba(168, 85, 247, 0.2);
+  color: #a855f7;
+}
+
+.badge-blacked-out {
+  background: rgba(0, 0, 0, 0.4);
+  color: #888;
+}
+
+/* Table styles */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(212, 168, 83, 0.1);
+}
+
+.table th {
+  color: var(--palace-gold);
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.table tr:hover td {
+  background: rgba(212, 168, 83, 0.05);
+}
+
+/* Drunk level animations */
+@keyframes wobble {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+
+.drunk-wobble {
+  animation: wobble 1s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 10px rgba(255, 107, 53, 0.3); }
+  50% { box-shadow: 0 0 25px rgba(255, 107, 53, 0.6); }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
